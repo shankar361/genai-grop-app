@@ -6,8 +6,8 @@ from langchain_core.output_parsers import StrOutputParser
 from dotenv import load_dotenv
 
 load_dotenv()
-st.page_title = "Your Friendly Chatbot"
-st.page_icon = "🤖"
+
+set.page_config(page_title="Your Friendly Chatbot", page_icon="🤖")
 st.title("Hello there! How can I assist you today? 🤖")
 
 parser = StrOutputParser()
