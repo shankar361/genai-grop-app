@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 st.set_page_config(
-    page_title="Your Friendly Chatbot",
-    page_icon="🤖",
+    page_title="YouChat",
+    page_icon="֎🇦🇮",
     layout="centered" 
 )
 st.title("Hello there! How can I assist you today? 🤖")
@@ -43,4 +43,5 @@ if user_input:
 
     # Rerun to immediately render response
     st.rerun()
+
 
