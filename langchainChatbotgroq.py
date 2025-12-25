@@ -6,7 +6,8 @@ from langchain_core.output_parsers import StrOutputParser
 from dotenv import load_dotenv
 
 load_dotenv()
-
+st.page_title = "Your Friendly Chatbot"
+st.page_icon = "🤖"
 st.title("Hello there! How can I assist you today? 🤖")
 
 parser = StrOutputParser()
@@ -25,7 +26,7 @@ for role, msg in st.session_state.chat_history:
             st.markdown(msg)
 
 # 🔹 Chat input
-user_input = st.chat_input("Type your message...")
+user_input = st.chat_input("Ask me anything...")
 
 if user_input:
     st.session_state.chat_history.append(("user", user_input))
