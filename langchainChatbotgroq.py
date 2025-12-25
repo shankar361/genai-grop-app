@@ -7,7 +7,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-set.page_config(page_title="Your Friendly Chatbot", page_icon="🤖")
+st.set_page_config(
+    page_title="Your Friendly Chatbot",
+    page_icon="🤖",
+    layout="centered" 
+)
 st.title("Hello there! How can I assist you today? 🤖")
 
 parser = StrOutputParser()
@@ -39,3 +43,4 @@ if user_input:
 
     # Rerun to immediately render response
     st.rerun()
+
