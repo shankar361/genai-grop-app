@@ -1,6 +1,6 @@
 from langchain_groq import ChatGroq as Groq
 import streamlit as st
-from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate,MessagesPlaceholder
 from langchain_core.output_parsers import StrOutputParser
 from dotenv import load_dotenv
 
@@ -36,11 +36,21 @@ st.markdown('<div id="bottom"></div>', unsafe_allow_html=True)
 user_input = st.chat_input("Ask me anything...")
 
 if user_input:
-    st.session_state.chat_history.append(("user", user_input))
+    #st.session_state.chat_history.append(("user", user_input))
 
-    prompt = ChatPromptTemplate.from_messages(st.session_state.chat_history)
+    #prompt = ChatPromptTemplate.from_messages(st.session_state.chat_history)
+    prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are a helpful chat assistant."),
+    MessagesPlaceholder(variable_name="history"),
+    ("user", "{input}")
+    ])
+    st.session_state.chat_history.append(("user", user_input))
     chain = prompt | llm | parser
-    response = chain.invoke({})
+    #response = chain.invoke({})
+    response = chain.invoke({
+    "history": st.session_state.chat_history[:-1],  # previous messages
+    "input": user_input
+    })
 
     st.session_state.chat_history.append(("assistant", response))
 
