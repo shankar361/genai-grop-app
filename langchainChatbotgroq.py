@@ -1,6 +1,5 @@
 from langchain_groq import ChatGroq as Groq
 import streamlit as st
-import os
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from dotenv import load_dotenv
@@ -10,8 +9,9 @@ load_dotenv()
 st.set_page_config(
     page_title="YouChat",
     page_icon="֎",
-    layout="centered" 
+    layout="centered"
 )
+
 st.title("Hello there! How can I assist you today? 🤖")
 
 parser = StrOutputParser()
@@ -29,6 +29,9 @@ for role, msg in st.session_state.chat_history:
         with st.chat_message(role):
             st.markdown(msg)
 
+# 🔹 Anchor at bottom
+st.markdown('<div id="bottom"></div>', unsafe_allow_html=True)
+
 # 🔹 Chat input
 user_input = st.chat_input("Ask me anything...")
 
@@ -41,8 +44,15 @@ if user_input:
 
     st.session_state.chat_history.append(("assistant", response))
 
-    # Rerun to immediately render response
+    # 🔹 Auto-scroll
+    st.markdown(
+        """
+        <script>
+            document.getElementById("bottom")
+                .scrollIntoView({ behavior: "smooth" });
+        </script>
+        """,
+        unsafe_allow_html=True
+    )
+
     st.rerun()
-
-
-
