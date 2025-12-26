@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 st.set_page_config(
-    page_title="$YouChat",
+    page_title="YouChat",
     layout="centered"
 )
 
@@ -65,5 +65,6 @@ if user_input:
     )
 
     st.rerun()
+
 
 
